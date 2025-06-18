@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 interface CatCardProps {
   code: number;
   description: string;
 }
 
-const Card = styled.div`
+const Card = styled(Link)`
   border: 1.5px solid #e0e0e0;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.07);
@@ -17,10 +18,13 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-decoration: none;
+  color: inherit;
   transition: box-shadow 0.2s;
   &:hover {
     box-shadow: 0 8px 32px rgba(0,0,0,0.13);
     border-color: #bdbdbd;
+    text-decoration: none;
   }
 `;
 
@@ -46,7 +50,7 @@ const Desc = styled.p`
 `;
 
 const CatCard: React.FC<CatCardProps> = ({ code, description }) => (
-  <Card>
+  <Card to={`/cat/${code}`}>
     <CatImage
       src={`https://http.cat/${code}`}
       alt={`HTTP ${code}`}
